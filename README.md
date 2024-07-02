@@ -21,7 +21,7 @@ database. You must build RAW tables little by little by programming inserts to s
 simulate this flow. In addition, you can incorporate data from other sources or generate them yourself according to the 
 as needs arise.
 
-## _PART B_
+## _PART C_
 
 Intermediate data layer.
 
