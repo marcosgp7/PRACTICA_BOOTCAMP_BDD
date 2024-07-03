@@ -15,4 +15,4 @@ WITH stg_orders AS (
     sea un dígito' y lo que hace es eliminarlo, al ir seguido por la cadena
     de reemplazo --> ''
     */
-    FROM stg_orders
+FROM {{ source('PBT_MA', 'orders') }}

@@ -3,4 +3,4 @@ WITH stg_part AS (
     FROM RAW_PROBOOTCAMP.RAW.RAW_PART
 )
     SELECT *
-    FROM stg_part
+FROM {{ source('PBT_MA', 'part') }}

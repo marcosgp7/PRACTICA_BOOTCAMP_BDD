@@ -3,4 +3,4 @@ WITH stg_customer AS (
     FROM RAW_PROBOOTCAMP.RAW.RAW_CUSTOMER
 )
 SELECT *
-FROM stg_customer
+FROM {{ source('PBT_MA', 'customers') }}

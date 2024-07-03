@@ -3,4 +3,4 @@ WITH stg_nation AS (
     FROM RAW_PROBOOTCAMP.RAW.RAW_NATION
 )
 SELECT *
-FROM stg_nation
+FROM {{ source('PBT_MA', 'nation') }}

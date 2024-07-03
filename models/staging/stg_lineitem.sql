@@ -3,4 +3,4 @@ WITH stg_lineitem AS (
     FROM RAW_PROBOOTCAMP.RAW.RAW_LINEITEM
 )
 SELECT *
-FROM stg_lineitem
+FROM {{ source('PBT_MA', 'lineitem') }}

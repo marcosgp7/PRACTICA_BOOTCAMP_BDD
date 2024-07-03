@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: PBT_MA
+    database: BOOTCAMP
+    schema: SCH_STAGING
+    tables:
+      - name: customers
+      - name: lineitem
+      - name: nation
+      - name: orders
+      - name: part
+      - name: partsupp
+      - name: region
+      - name: supplier

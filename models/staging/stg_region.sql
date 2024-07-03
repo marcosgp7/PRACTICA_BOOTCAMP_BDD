@@ -3,4 +3,4 @@ WITH stg_region AS (
     FROM RAW_PROBOOTCAMP.RAW.RAW_REGION
 )
     SELECT *
-    FROM stg_region
+FROM {{ source('PBT_MA', 'region') }}
