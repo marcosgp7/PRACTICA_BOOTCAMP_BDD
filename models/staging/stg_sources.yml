@@ -1,15 +1,15 @@
 version: 2
 
 sources:
-  - name: PBT_MA
-    database: BOOTCAMP
-    schema: SCH_STAGING
+  - name: raw
+    database: RAW_PROBOOTCAMP
+    schema: raw
     tables:
-      - name: customers
-      - name: lineitem
-      - name: nation
-      - name: orders
-      - name: part
-      - name: partsupp
-      - name: region
-      - name: supplier
+      - name: raw_customers
+      - name: raw_lineitem
+      - name: raw_nation
+      - name: raw_orders
+      - name: raw_part
+      - name: raw_partsupp
+      - name: raw_region
+      - name: raw_supplier

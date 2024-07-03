@@ -1,7 +1,3 @@
-WITH stg_orders AS (
-    SELECT *
-    FROM RAW_PROBOOTCAMP.RAW.RAW_ORDERS
-)
     SELECT o_orderkey,
     o_custkey,
     o_orderstatus,
@@ -15,4 +11,4 @@ WITH stg_orders AS (
     sea un dígito' y lo que hace es eliminarlo, al ir seguido por la cadena
     de reemplazo --> ''
     */
-FROM {{ source('PBT_MA', 'orders') }}
+FROM {{ source('raw', 'raw_orders') }}

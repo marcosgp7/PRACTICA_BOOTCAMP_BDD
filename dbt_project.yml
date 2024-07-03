@@ -39,7 +39,7 @@ models:
   PRACTICA_BOOTCAMP_BDD:  # A namespace for a specific group of models within the project
     staging:  # Subgroup for staging models
       +schema: staging  # All models here will be created in the 'staging' schema
-      +materialized: view  # Models will be materialized as views in the database
+      +materialized: table  # Models will be materialized as views in the database
     intermediate:  # Subgroup for intermediate models
       +schema: intermediate  # All models here will be created in the 'intermediate' schema
       +materialized: table  # Models will be materialized as tables in the database
