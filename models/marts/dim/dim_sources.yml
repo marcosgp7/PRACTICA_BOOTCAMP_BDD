@@ -1,0 +1,19 @@
+version: 2
+
+
+sources:
+  - name: raw
+    database: RAW_PROBOOTCAMP_PROPIAS
+    schema: raw
+    tables:
+      - name: raw_customers
+      - name: raw_lineitem
+      - name: raw_nation
+      - name: raw_orders
+      - name: raw_part
+      - name: raw_partsupp
+      - name: raw_region
+      - name: raw_supplier
+      - name: events
+      - name: currency
+      - name: store
