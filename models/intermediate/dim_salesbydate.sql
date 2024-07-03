@@ -3,8 +3,7 @@ WITH salesbydate AS (
         o_orderkey, o_custkey,
         o_orderstatus, o_totalprice,
         o_orderdate, o_orderpriority,
-        o_clerk, o_quantity,
-        l.l_quantity AS quantity,
+        o_clerk, l.l_quantity AS quantity,
         ROUND(l.l_extendedprice * (1 - l.l_discount) * (1 + l.l_tax), 2) AS totalprice,
         CASE l.l_returnflag
             WHEN 'R' THEN 'Returned'
@@ -15,4 +14,4 @@ WITH salesbydate AS (
     WHERE l.l_returnflag <> 'A'
 )
 SELECT * FROM salesbydate
-ORDER BY orderdate
+ORDER BY o_orderdate
