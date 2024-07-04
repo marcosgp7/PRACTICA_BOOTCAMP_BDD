@@ -6,10 +6,29 @@ sources:
     schema: raw
     tables:
       - name: raw_customers
+        description: Contains raw data of customers including their personal and contact information.
       - name: raw_lineitem
+        description: Includes raw data for line items in orders, detailing each product in a given order.
       - name: raw_nation
+        description: Holds raw data about nations, likely used for geographical or market segmentation.
       - name: raw_orders
+        description: Contains raw data for customer orders including order dates, status, and total amounts.
       - name: raw_part
+        description: Includes raw data about individual parts or products available for sale.
       - name: raw_partsupp
+        description: Holds raw data regarding parts and their respective suppliers.
       - name: raw_region
+        description: Contains raw data about different regions, possibly for geographical analysis.
       - name: raw_supplier
+        description: Includes raw data about suppliers providing parts and products.
+
+  - name: mias
+    database: RAW_PROBOOTCAMP
+    schema: mias
+    tables:
+      - name: currency
+        description: Contains data about different currencies, likely used for financial transactions or conversions.
+      - name: events
+        description: Holds data about various events, which could include sales events, marketing events, or customer interactions.
+      - name: store
+        description: Includes data about physical or online stores, detailing their locations, sizes, and other relevant attributes.
