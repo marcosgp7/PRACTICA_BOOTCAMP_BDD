@@ -41,5 +41,10 @@ models:
       +schema: staging  # All models here will be created in the 'staging' schema
       +materialized: table  # Models will be materialized as views in the database
     intermediate:  # Subgroup for intermediate models
+    dim:
       +schema: intermediate  # All models here will be created in the 'intermediate' schema
       +materialized: table  # Models will be materialized as tables in the database
+    marts:
+    facts:
+      +schema: intermediate
+      +materialized: table

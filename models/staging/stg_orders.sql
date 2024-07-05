@@ -2,6 +2,7 @@
     o_custkey,
     o_orderstatus,
     o_totalprice,
+    o_orderdate,
     concat(o_orderdate,' ', TO_CHAR(CURRENT_TIMESTAMP, 'HH24:MI:SS')) as hora_UTC,
     o_orderpriority,
     CAST(REGEXP_REPLACE(o_clerk, '[^0-9]', '') AS NUMBER) AS o_clerk,
