@@ -1,4 +1,6 @@
-    SELECT o_orderkey,
+    SELECT 
+    O_ORDERDATE,
+    o_orderkey,
     o_custkey,
     o_orderstatus,
     o_totalprice,

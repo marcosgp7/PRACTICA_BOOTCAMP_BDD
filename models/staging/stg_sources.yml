@@ -32,3 +32,4 @@ sources:
         description: Holds data about various events, which could include sales events, marketing events, or customer interactions.
       - name: store
         description: Includes data about physical or online stores, detailing their locations, sizes, and other relevant attributes.
+      - name: timezones
