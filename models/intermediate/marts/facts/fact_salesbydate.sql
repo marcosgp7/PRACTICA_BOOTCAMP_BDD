@@ -1,4 +1,6 @@
-
+{{ config(
+    materialized='incremental'
+) }}
 WITH extended_prices AS (
     SELECT 
         l.l_orderkey,
