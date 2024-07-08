@@ -2,7 +2,7 @@
 WITH extended_prices AS (
     SELECT 
         l.l_orderkey,
-    
+        
         l.l_partkey,
         l.l_suppkey,
         l.l_quantity,
@@ -24,9 +24,9 @@ adjusted_times AS (
         o.o_custkey,
         o.o_clerk,
         c.name,
-        n_cliente.nation as nation,
+        n_cliente.nation as nationCLIENTE,
         UNIFORM(1, 48, RANDOM()) AS store_id,
-       
+        n_store.NATION NATIONSTORE,
         n_store.CHANGE_TYPE AS cambio_store,
         n_cliente.CHANGE_TYPE AS cambio_cliente,
     CONVERT_TIMEZONE('UTC' , n_store.timezone , o.hora_UTC ) AS hora_local_store,
@@ -38,6 +38,7 @@ adjusted_times AS (
     JOIN {{ ref('dim_reg_nation') }} n_cliente ON c.NATION = n_cliente.NATION
 )
 SELECT 
+    eventkey,
     at.o_orderkey,
     at.o_orderdate,
     at.hora_UTC,
@@ -53,7 +54,8 @@ SELECT
     at.o_clerk,
     at.cambio_store,
     at.cambio_cliente,
-    at.nation as nation,
+    at.nationCLIENTE as nationCLIENTE,
+    AT.NATIONSTORE AS NATIONSTORE,
     ROUND(at.cambio_store * ep.total_amount, 2) AS divisa_store,
     ROUND(at.cambio_cliente * ep.total_amount, 2) AS divisa_cliente,
     at.hora_local_store,
@@ -69,6 +71,7 @@ SELECT
     END AS plazo_entrega
 FROM extended_prices ep
 JOIN adjusted_times at ON ep.l_orderkey = at.o_orderkey
+left join {{ source('mias', 'events') }} on nation_name=nationstore and o_orderdate between DATE_BEGIN and DATE_END 
    {% if is_incremental() %}
         where o_orderkey not in (select o_orderkey from {{ this }})
     {% endif %}
