@@ -1,3 +1,4 @@
+
 SELECT 
     store_id,
     sum(l_quantity) as cantidad,

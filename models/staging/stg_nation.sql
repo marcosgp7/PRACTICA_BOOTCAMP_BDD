@@ -1,4 +1,3 @@
-
 SELECT 
     n.n_nationkey,
     n.n_name,

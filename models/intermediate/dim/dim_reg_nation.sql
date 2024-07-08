@@ -1,3 +1,6 @@
+{{ config(
+    materialized='incremental'
+) }}
 WITH dim_reg_nat AS (
     SELECT 
         n_nationkey AS nationkey,

@@ -7,20 +7,117 @@ sources:
     tables:
       - name: raw_customers
         description: Contains raw data of customers including their personal and contact information.
+        columns:
+          - name: c_custkey
+            description: Customer primary key
+            tests:
+              - unique
+              - not_null
+          - name: c_name
+            description: Customer name
+            tests:
+              - not_null
+          - name: c_acctbal
+            description: Account balance
+            tests:
+              - not_null
+
       - name: raw_lineitem
         description: Includes raw data for line items in orders, detailing each product in a given order.
+        columns:
+          - name: l_orderkey
+            description: Order primary key
+            tests:
+              - not_null
+          - name: l_partkey
+            description: Part primary key
+            tests:
+              - not_null
+          - name: l_suppkey
+            description: Supplier primary key
+            tests:
+              - not_null
+          - name: l_quantity
+            description: Quantity of items
+            tests:
+              - not_null
+
       - name: raw_nation
         description: Holds raw data about nations, likely used for geographical or market segmentation.
+        columns:
+          - name: n_nationkey
+            description: Nation primary key
+            tests:
+              - unique
+              - not_null
+          - name: n_name
+            description: Nation name
+            tests:
+              - not_null
+
       - name: raw_orders
         description: Contains raw data for customer orders including order dates, status, and total amounts.
+        columns:
+          - name: o_orderkey
+            description: Order primary key
+            tests:
+              - unique
+              - not_null
+          - name: o_orderdate
+            description: Order date
+            tests:
+              - not_null
+
       - name: raw_part
         description: Includes raw data about individual parts or products available for sale.
+        columns:
+          - name: p_partkey
+            description: Part primary key
+            tests:
+              - unique
+              - not_null
+          - name: p_name
+            description: Part name
+            tests:
+              - not_null
+
       - name: raw_partsupp
         description: Holds raw data regarding parts and their respective suppliers.
+        columns:
+          - name: ps_partkey
+            description: Part primary key
+            tests:
+              - not_null
+          - name: ps_suppkey
+            description: Supplier primary key
+            tests:
+              - not_null
+
       - name: raw_region
         description: Contains raw data about different regions, possibly for geographical analysis.
+        columns:
+          - name: r_regionkey
+            description: Region primary key
+            tests:
+              - unique
+              - not_null
+          - name: r_name
+            description: Region name
+            tests:
+              - not_null
+
       - name: raw_supplier
         description: Includes raw data about suppliers providing parts and products.
+        columns:
+          - name: s_suppkey
+            description: Supplier primary key
+            tests:
+              - unique
+              - not_null
+          - name: s_name
+            description: Supplier name
+            tests:
+              - not_null
 
   - name: mias
     database: RAW_PROBOOTCAMP
@@ -28,8 +125,38 @@ sources:
     tables:
       - name: currency
         description: Contains data about different currencies, likely used for financial transactions or conversions.
+        columns:
+          - name: id_pais
+            description: Country ID
+            tests:
+              - not_null
+          - name: tipo_cambio
+            description: Exchange rate
+            tests:
+              - not_null
+
       - name: events
         description: Holds data about various events, which could include sales events, marketing events, or customer interactions.
+        columns:
+          - name: id_evento
+            description: Event ID
+            tests:
+              - unique
+              - not_null
+
       - name: store
         description: Includes data about physical or online stores, detailing their locations, sizes, and other relevant attributes.
+        columns:
+          - name: st_store_id
+            description: Store primary key
+            tests:
+              - unique
+              - not_null
+          - name: st_nationkey
+            description: Nation key
+            tests:
+              - not_null
+
       - name: timezones
+        description: Contains timezone data for various regions or locations.
+
