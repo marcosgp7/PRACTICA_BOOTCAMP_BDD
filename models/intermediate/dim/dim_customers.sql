@@ -1,3 +1,6 @@
+{{ config(
+    materialized='incremental'
+) }}
 WITH dim_customer AS (
     SELECT 
         c.c_custkey AS custkey,
