@@ -1,7 +1,4 @@
-{{ config(
-    materialized='incremental',
-    unique_key=['o_orderkey', 'l_suppkey', 'l_partkey']
-) }}
+
 WITH extended_prices AS (
     SELECT 
         l.l_orderkey,
