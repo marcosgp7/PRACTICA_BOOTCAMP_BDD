@@ -1,6 +1,7 @@
-
 SELECT 
-    n.*, 
+    n.n_nationkey,
+    n.n_name,
+    n.n_regionkey,
     timez as timezone
 FROM 
     {{ source('raw', 'raw_nation') }} n
