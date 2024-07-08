@@ -1,3 +1,6 @@
+{{ config(
+    materialized='incremental'
+) }}
 WITH dim_partsupp AS (
     SELECT
     ps_partkey AS partkey,

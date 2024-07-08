@@ -1,3 +1,6 @@
+{{ config(
+    materialized='incremental'
+) }}
 WITH dim_events AS (
 
     SELECT * FROM

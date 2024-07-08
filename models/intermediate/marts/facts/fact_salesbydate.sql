@@ -66,13 +66,16 @@ SELECT
         WHEN ep.l_returnflag = 'N' THEN 'Not returned'
     END AS l_returnflag,
     CASE
-        WHEN DATEDIFF(day, ep.l_commitdate, ep.l_receiptdate) <= 0 THEN 'En plazo, el pedido se ha entregado a tiempo o antes de la fecha estimada (COMMITDATE)'
-        WHEN DATEDIFF(day, ep.l_commitdate, ep.l_receiptdate) > 10 THEN 'Fuera de plazo, el pedido se ha entregado con un retraso mayor a 10 días'
-        WHEN DATEDIFF(day, ep.l_commitdate, ep.l_receiptdate) > 0 THEN 'Entrega tardía, el pedido se ha entregado como máximo 10 días después de la fecha estimada'
-    END AS plazo_entrega
+            WHEN DATEDIFF(day, L_COMMITDATE, L_RECEIPTDATE) > 30 THEN 0  -- Fuera de plazo (> 30 días)
+            WHEN DATEDIFF(day, L_COMMITDATE, L_RECEIPTDATE) <= 0 THEN 1  -- En plazo (0 días de retraso)
+            WHEN DATEDIFF(day, L_COMMITDATE, L_RECEIPTDATE) <= 10 THEN 2 -- Entrega tardía (<= 10 días de retraso)
+            WHEN DATEDIFF(day, L_COMMITDATE, L_RECEIPTDATE) > 10 AND DATEDIFF(day, L_COMMITDATE, L_RECEIPTDATE) <= 30 THEN 3 -- Entrega crítica (entre 10 y 30 días de retraso)
+            ELSE 0
+        END AS plazo_entrega,
+        current_timestamp as update_date
 FROM extended_prices ep
 JOIN adjusted_times at ON ep.l_orderkey = at.o_orderkey
-left join {{ source('mias', 'events') }} on upper(nation_name)=upper(nationstore) and o_orderdate between DATE_BEGIN and DATE_END 
+left join {{ ref('dim_events') }} on upper(nation_name)=upper(nationstore) and o_orderdate between DATE_BEGIN and DATE_END 
    {% if is_incremental() %}
         where o_orderkey not in (select o_orderkey from {{ this }})
     {% endif %}

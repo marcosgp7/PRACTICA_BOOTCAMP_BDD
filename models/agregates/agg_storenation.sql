@@ -1,6 +1,4 @@
-{{ config(
-    materialized='incremental'
-) }}
+
 SELECT 
     NATIONSTORE,
     count(distinct o_custkey) as num_clientes,

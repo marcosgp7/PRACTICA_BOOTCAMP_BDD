@@ -1,6 +1,4 @@
-{{ config(
-    materialized='incremental'
-) }}
+
 SELECT 
     o_custkey,
     name,
@@ -12,5 +10,7 @@ from {{ ref('fact_salesbydate') }}
         where o_custkey not in (select o_custkey from {{ this }})
     {% endif %}
 group by o_custkey,name
+
+    
 
 

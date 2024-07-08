@@ -1,3 +1,6 @@
+{{ config(
+    materialized='incremental'
+) }}
 WITH dim_store AS (
     SELECT 
     storekey,
