@@ -69,7 +69,7 @@ SELECT
             WHEN DATEDIFF(day, L_COMMITDATE, L_RECEIPTDATE) > 30 THEN 0  -- Fuera de plazo (> 30 días)
             WHEN DATEDIFF(day, L_COMMITDATE, L_RECEIPTDATE) <= 0 THEN 1  -- En plazo (0 días de retraso)
             WHEN DATEDIFF(day, L_COMMITDATE, L_RECEIPTDATE) <= 10 THEN 2 -- Entrega tardía (<= 10 días de retraso)
-            WHEN DATEDIFF(day, L_COMMITDATE, L_RECEIPTDATE) > 10 AND DATEDIFF(day, l.expected_delivery, l.actual_delivery) <= 30 THEN 3 -- Entrega crítica (entre 10 y 30 días de retraso)
+            WHEN DATEDIFF(day, L_COMMITDATE, L_RECEIPTDATE) > 10 AND DATEDIFF(day, L_COMMITDATE, L_RECEIPTDATE) <= 30 THEN 3 -- Entrega crítica (entre 10 y 30 días de retraso)
             ELSE 0
         END AS plazo_entrega,
         current_timestamp as update_date

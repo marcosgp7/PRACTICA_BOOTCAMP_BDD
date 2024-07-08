@@ -45,5 +45,5 @@ models:
       +materialized: table  # Models will be materialized as tables in the database
     aggregates:  # Subgroup for intermediate models
       +schema: agg  # All models here will be created in the 'intermediate' schema
-      +materialized: table  # Models will be materialized as tables in the database
+      +materialized: views  # Models will be materialized as tables in the database
             
