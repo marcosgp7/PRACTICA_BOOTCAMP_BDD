@@ -11,4 +11,3 @@ JOIN
      GROUP BY c2) t
 ON 
     UPPER(n.N_NAME) = UPPER(t.c2)
-
