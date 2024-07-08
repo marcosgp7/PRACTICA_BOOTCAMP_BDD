@@ -2,7 +2,6 @@
 WITH extended_prices AS (
     SELECT 
         l.l_orderkey,
-        
         l.l_partkey,
         l.l_suppkey,
         l.l_quantity,
@@ -71,8 +70,8 @@ SELECT
     END AS plazo_entrega
 FROM extended_prices ep
 JOIN adjusted_times at ON ep.l_orderkey = at.o_orderkey
-left join {{ source('mias', 'events') }} on nation_name=nationstore and o_orderdate between DATE_BEGIN and DATE_END 
+left join {{ source('mias', 'events') }} on upper(nation_name)=upper(nationstore) and o_orderdate between DATE_BEGIN and DATE_END 
    {% if is_incremental() %}
         where o_orderkey not in (select o_orderkey from {{ this }})
     {% endif %}
-ORDER BY at.o_orderdate DESC
+ORDER BY eventkey 
