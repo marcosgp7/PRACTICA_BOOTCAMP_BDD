@@ -74,4 +74,4 @@ left join {{ source('mias', 'events') }} on upper(nation_name)=upper(nationstore
    {% if is_incremental() %}
         where o_orderkey not in (select o_orderkey from {{ this }})
     {% endif %}
-ORDER BY eventkey 
+ORDER BY o_orderdate 
