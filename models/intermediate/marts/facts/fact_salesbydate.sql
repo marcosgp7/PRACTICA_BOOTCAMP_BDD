@@ -24,6 +24,7 @@ adjusted_times AS (
         o.o_custkey,
         o.o_clerk,
         c.name,
+        n_cliente.nation as nation,
         UNIFORM(1, 48, RANDOM()) AS store_id,
        
         n_store.CHANGE_TYPE AS cambio_store,
@@ -42,6 +43,7 @@ SELECT
     at.hora_UTC,
     at.o_custkey,
     at.name,
+    store_id,
     ep.l_partkey,
     ep.name_part,
     ep.l_suppkey,
@@ -49,6 +51,9 @@ SELECT
     ep.l_quantity,
     ep.total_amount,
     at.o_clerk,
+    at.cambio_store,
+    at.cambio_cliente,
+    at.nation as nation,
     ROUND(at.cambio_store * ep.total_amount, 2) AS divisa_store,
     ROUND(at.cambio_cliente * ep.total_amount, 2) AS divisa_cliente,
     at.hora_local_store,
@@ -64,5 +69,7 @@ SELECT
     END AS plazo_entrega
 FROM extended_prices ep
 JOIN adjusted_times at ON ep.l_orderkey = at.o_orderkey
-
+   {% if is_incremental() %}
+        where o_orderkey not in (select o_orderkey from {{ this }})
+    {% endif %}
 ORDER BY at.o_orderdate DESC
