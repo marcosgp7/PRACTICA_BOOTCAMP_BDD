@@ -1,6 +1,8 @@
 
 SELECT 
-    n.*, 
+    n.n_nationkey,
+    n.n_name,
+    n.n_regionkey,
     timez as timezone
 FROM 
     {{ source('raw', 'raw_nation') }} n
@@ -10,4 +12,3 @@ JOIN
      GROUP BY c2) t
 ON 
     UPPER(n.N_NAME) = UPPER(t.c2)
-
